@@ -1,7 +1,6 @@
 package com.thach.example.controller;
 
-import com.thach.example.com.thach.example.service.HistoryService;
-import com.thach.example.com.thach.example.service.UserService;
+import com.thach.example.service.HistoryService;
 import com.thach.example.model.CalculationUser;
 import com.thach.example.model.History;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,11 +8,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import com.thach.example.service.UserService;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Created by THACH-PC on 12/27/2017.
+ * Created by THACH-PC
  */
 
 @RestController
@@ -27,13 +28,13 @@ public class AuthenticationController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/login")
     public String login(@RequestBody CalculationUser calculationUser){
-        CalculationUser savedCalculationUser = userService.getUser(calculationUser.getUsername());
+        CalculationUser savedCalculationUser = userService.findUser(calculationUser.getUsername());
         if (savedCalculationUser != null && savedCalculationUser.getPassword().equals(calculationUser.getPassword())){
             History history = new History();
             history.setHistory("History Test");
             history.setDate(new Date());
             history.setCreatedBy(savedCalculationUser);
-            historyService.create(history);
+            historyService.createHistory(history);
             return "login successfully";
         } else {
             return "login fail";
@@ -42,7 +43,7 @@ public class AuthenticationController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/signup")
     public String signin(@RequestBody CalculationUser calculationUser){
-        CalculationUser savedCalculationUser = userService.getUser(calculationUser.getUsername());
+        CalculationUser savedCalculationUser = userService.findUser(calculationUser.getUsername());
         if (savedCalculationUser == null){
             userService.createUser(calculationUser);
             return calculationUser.getUsername();
@@ -50,5 +51,4 @@ public class AuthenticationController {
             return "calculationUser already exists";
         }
     }
-
 }

@@ -2,14 +2,15 @@ package com.thach.example.model;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Created by THACH-PC on 12/27/2017.
+ * Created by THACH-PC
  */
 
 @Entity
-public class History {
+public class History implements Serializable{
 
     @Id
     @GeneratedValue
@@ -17,7 +18,7 @@ public class History {
 
     private String history;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date date;
 
     @ManyToOne

@@ -8,10 +8,12 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 /**
- * Created by THACH-PC on 12/27/2017.
+ * Created by THACH-PC
  */
 
 @Repository
@@ -20,19 +22,19 @@ public class HistoryDAO {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public List<History> getHistory(String username){
-//        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
-//        builder.
-//        Criteria criteria = builder.createQuery(History.class);
-        String query = "from History";
-        List result = entityManager.createQuery(query).getResultList();
+    public List<History> getHistoriesByUser(CalculationUser user){
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<History> criteria = builder.createQuery(History.class);
+        Root<History> history = criteria.from(History.class);
+        criteria.select(history);
+        criteria.where(builder.equal(history.get("createdBy"), user));
+        criteria.orderBy(builder.desc(history.get("date")));
+        List<History> histories = entityManager.createQuery(criteria).getResultList();
 
-        return result;
-
-//        return entityManager.
+        return histories;
     }
 
-    public void create(History history){
+    public void createHistory(History history){
         entityManager.persist(history);
     }
 }

@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
- * Created by THACH-PC on 12/27/2017.
+ * Created by THACH-PC
  */
 
 @Repository
@@ -16,12 +16,12 @@ public class UserDAO {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public CalculationUser getUser(String username){
+    public CalculationUser find(String username){
         CalculationUser calculationUser = entityManager.find(CalculationUser.class, username);
         return calculationUser;
     }
 
-    public void save(CalculationUser calculationUser){
+    public void create(CalculationUser calculationUser){
         entityManager.persist(calculationUser);
     }
 }

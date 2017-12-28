@@ -1,7 +1,6 @@
-package com.thach.example.com.thach.example.service;
+package com.thach.example.service;
 
 import com.thach.example.dao.HistoryDAO;
-import com.thach.example.dao.UserDAO;
 import com.thach.example.model.CalculationUser;
 import com.thach.example.model.History;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * Created by THACH-PC on 12/27/2017.
+ * Created by THACH-PC
  */
 
 @Transactional
@@ -21,12 +20,12 @@ public class HistoryService {
     @Autowired
     private HistoryDAO historyDAO;
 
-    public List<History> getHistory(String username){
-        List<History> result = historyDAO.getHistory(username);
+    public List<History> getHistoriesByUser(CalculationUser user){
+        List<History> result = historyDAO.getHistoriesByUser(user);
         return result;
     }
 
-    public void create(History history){
-        historyDAO.create(history);
+    public void createHistory(History history){
+        historyDAO.createHistory(history);
     }
 }

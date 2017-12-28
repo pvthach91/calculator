@@ -7,12 +7,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Created by THACH-PC on 12/27/2017.
+ * Created by THACH-PC
  */
 
 @RestController
 public class TestController {
 
+    @RequestMapping("/")
+    public String homepage() {
+        return "index";
+
+    }
     @RequestMapping("/hello")
     public CalculationUser sayHello() throws Exception {
         return new CalculationUser("thach", "pass");

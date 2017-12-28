@@ -2,13 +2,14 @@ package com.thach.example.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 /**
- * Created by THACH-PC on 12/27/2017.
+ * Created by THACH-PC
  */
 
 @Entity
-public class CalculationUser {
+public class CalculationUser implements Serializable{
 
     @Id
     private String username;
