@@ -1,19 +1,20 @@
 package com.thach.example.calculation;
 
 /**
- * Created by Thach
+ * Created by THACH-PC
  */
+
 public class Square extends OneParamCalculation {
 
     public Square(){
     }
-    public Square(double firstParam) {
-        super(firstParam);
+    public Square(String user, double firstParam) {
+        super(user, firstParam);
     }
 
     @Override
     public String generateHistory() {
-        return (this.param + " square " + " = " + this.calculate());
+        return (this.param + " square " + "= " + this.calculate());
     }
 
     @Override

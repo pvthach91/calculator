@@ -1,15 +1,15 @@
 package com.thach.example.calculation;
 
 /**
- * Created by Thach
+ * Created by THACH-PC
  */
 public class Addition extends TwoParamCalculation {
 
     public Addition() {
     }
 
-    public Addition(double firstParam, double secondParam) {
-        super(firstParam, secondParam);
+    public Addition(String user, double firstParam, double secondParam) {
+        super(user, firstParam, secondParam);
     }
 
     @Override

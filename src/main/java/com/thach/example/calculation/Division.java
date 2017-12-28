@@ -1,15 +1,15 @@
 package com.thach.example.calculation;
 
 /**
- * Created by Thach
+ * Created by THACH-PC
  */
 public class Division extends TwoParamCalculation {
 
     public Division() {
     }
 
-    public Division(double firstParam, double secondParam) {
-        super(firstParam, secondParam);
+    public Division(String user, double firstParam, double secondParam) {
+        super(user, firstParam, secondParam);
     }
 
     @Override

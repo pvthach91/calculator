@@ -1,15 +1,15 @@
 package com.thach.example.calculation;
 
 /**
- * Created by Thach
+ * Created by THACH-PC
  */
 public class Multiplication extends TwoParamCalculation {
 
     public Multiplication() {
     }
 
-    public Multiplication(double firstParam, double secondParam) {
-        super(firstParam, secondParam);
+    public Multiplication(String user, double firstParam, double secondParam) {
+        super(user, firstParam, secondParam);
     }
 
     @Override

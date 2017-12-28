@@ -1,8 +1,8 @@
 package com.thach.example.controller;
 
+import com.thach.example.error.EnumError;
 import com.thach.example.service.HistoryService;
 import com.thach.example.model.CalculationUser;
-import com.thach.example.model.History;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,28 +27,23 @@ public class AuthenticationController {
     private HistoryService historyService;
 
     @RequestMapping(method = RequestMethod.POST, value = "/login")
-    public String login(@RequestBody CalculationUser calculationUser){
-        CalculationUser savedCalculationUser = userService.findUser(calculationUser.getUsername());
-        if (savedCalculationUser != null && savedCalculationUser.getPassword().equals(calculationUser.getPassword())){
-            History history = new History();
-            history.setHistory("History Test");
-            history.setDate(new Date());
-            history.setCreatedBy(savedCalculationUser);
-            historyService.createHistory(history);
-            return "login successfully";
+    public String login(@RequestBody CalculationUser user) throws Exception {
+        CalculationUser savedUser = userService.findUser(user.getUsername());
+        if (savedUser != null && savedUser.getPassword().equals(user.getPassword())){
+            return savedUser.getUsername();
         } else {
-            return "login fail";
+            throw new Exception(EnumError.USER_PASS_INVALID.getDescription());
         }
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/signup")
-    public String signin(@RequestBody CalculationUser calculationUser){
-        CalculationUser savedCalculationUser = userService.findUser(calculationUser.getUsername());
-        if (savedCalculationUser == null){
-            userService.createUser(calculationUser);
-            return calculationUser.getUsername();
+    public String signin(@RequestBody CalculationUser user) throws Exception {
+        CalculationUser savedUser = userService.findUser(user.getUsername());
+        if (savedUser == null){
+            userService.createUser(user);
+            return user.getUsername();
         } else {
-            return "calculationUser already exists";
+            throw new Exception(EnumError.USER_EXIST.getDescription());
         }
     }
 }

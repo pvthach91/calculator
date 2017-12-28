@@ -1,5 +1,6 @@
 package com.thach.example.controller;
 
+import com.thach.example.error.EnumError;
 import com.thach.example.model.CalculationUser;
 import com.thach.example.service.HistoryService;
 import com.thach.example.model.History;
@@ -27,14 +28,16 @@ public class HistoryController {
     private UserService userService;
 
     @RequestMapping(method = RequestMethod.POST, value = "/history")
-    public List<History> getHistories(@RequestBody String username){
+    public List<History> getHistories(@RequestBody String username) throws Exception {
+        if (username == null || username.isEmpty()){
+            throw new Exception(EnumError.NEED_LOG_IN.getDescription());
+        }
+
         CalculationUser user = userService.findUser(username);
         if (user == null){
-            // throw exception
-            return Collections.EMPTY_LIST;
-        } else {
-            List<History> result = historyService.getHistoriesByUser(user);
-            return result;
+            throw new Exception(EnumError.NEED_LOG_IN.getDescription());
         }
+
+        return historyService.getHistoriesByUser(user);
     }
 }

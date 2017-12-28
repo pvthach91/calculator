@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 /**
- * Created by Thach
+ * Created by THACH-PC
  */
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type", visible = true)
@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         @JsonSubTypes.Type(value = Division.class, name = "division"),
         @JsonSubTypes.Type(value = Multiplication.class, name = "multiplication")
 })
-public abstract class TwoParamCalculation implements Calculable {
+public abstract class TwoParamCalculation extends Calculator {
 
     protected double firstParam;
 
@@ -23,7 +23,8 @@ public abstract class TwoParamCalculation implements Calculable {
     protected TwoParamCalculation() {
     }
 
-    protected TwoParamCalculation(double firstParam, double secondParam) {
+    protected TwoParamCalculation(String user, double firstParam, double secondParam) {
+        super(user);
         this.firstParam = firstParam;
         this.secondParam = secondParam;
     }

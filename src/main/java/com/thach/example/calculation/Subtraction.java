@@ -1,15 +1,16 @@
 package com.thach.example.calculation;
 
 /**
- * Created by Thach
+ * Created by THACH-PC
  */
+
 public class Subtraction extends TwoParamCalculation {
 
     public Subtraction() {
     }
 
-    public Subtraction(double firstParam, double secondParam) {
-        super(firstParam, secondParam);
+    public Subtraction(String user, double firstParam, double secondParam) {
+        super(user, firstParam, secondParam);
     }
 
     @Override
