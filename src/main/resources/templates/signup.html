@@ -28,7 +28,7 @@
 				<label class="control-label col-sm-2" for="usernameID">Username:</label>
 				<div class="col-sm-5">
 					<input type="text" class="form-control" name="username" id="usernameID"
-						placeholder="Enter Username" ng-model="username"/>
+						placeholder="Enter Username" ng-model="username" maxlength="30"/>
 					<span style="color:red">{{usernameError}}</span>
 				</div>
 			</div>
@@ -55,15 +55,8 @@
 				<div class="col-sm-offset-2 col-sm-10">
 					<button type="submit" class="btn btn-primary">Sign up</button>
 				</div>
-				<!--<div class="col-sm-offset-2 col-sm-10">-->
-					<!--, please click login button here<button type="button" class="btn btn-primary" ng-click="login()">Login</button>-->
-				<!--</div>-->
 			</div>
 		</form>
-
-		<!--<div class="col-sm-offset-2 col-sm-10">-->
-			<!--<p>{{signupResultMessage}}</p>-->
-		<!--</div>-->
 	</div>
 </div>
 </div>
