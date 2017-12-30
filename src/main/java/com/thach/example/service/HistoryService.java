@@ -38,7 +38,7 @@ public class HistoryService {
         CalculationUser user = userService.findUser(historical.getUser());
         if (user != null){
             History history = new History();
-            history.setHistory(historical.generateHistory());
+            history.setContent(historical.generateHistory());
             history.setDate(new Date());
             history.setCreatedBy(user);
             historyDAO.createHistory(history);

@@ -9,26 +9,30 @@ import java.util.Date;
  * Created by THACH-PC
  */
 
-@Entity
+@Entity(name = "history")
 public class History implements Serializable{
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Integer id;
 
-    private String history;
+    @Column(name = "content")
+    private String content;
 
+    @Column(name = "date")
     @Temporal(TemporalType.DATE)
     private Date date;
 
     @ManyToOne
+    @JoinColumn(name = "created_by")
     private CalculationUser createdBy;
 
     public History() {
     }
 
-    public History(String history, Date date, CalculationUser createdBy) {
-        this.history = history;
+    public History(String content, Date date, CalculationUser createdBy) {
+        this.content = content;
         this.date = date;
         this.createdBy = createdBy;
     }
@@ -41,12 +45,12 @@ public class History implements Serializable{
         this.id = id;
     }
 
-    public String getHistory() {
-        return history;
+    public String getContent() {
+        return content;
     }
 
-    public void setHistory(String history) {
-        this.history = history;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public Date getDate() {

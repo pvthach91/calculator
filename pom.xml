@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>calculator</name>
-	<description>Calculator App</description>
+	<description>Calculator Application</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -31,12 +31,16 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
 		<dependency>
-			<groupId>org.apache.derby</groupId>
-			<artifactId>derby</artifactId>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>

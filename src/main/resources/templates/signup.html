@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+
+<html>
+<head>
+	  <title>Signup</title>
+	  <meta charset="utf-8" />
+	  <meta name="viewport" content="width=device-width, initial-scale=1" />
+	  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	  <script src="/js/signupcontroller.js"></script>
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+	  
+</head>
+<body>
+
+<div class="container" ng-app="app" ng-controller="signupcontroller">
+
+	<div style="margin-top: 20px; margin-bottom: 10px;">
+		<button id="btn-logout" type="button" class="btn btn-primary" ng-click="login()">Login</button>
+		<label style="color:blue">If you already had an account</label>
+	</div>
+	<div style="border: solid 2px green">
+	<div>
+		<form class="form-horizontal" name="customerForm" ng-submit="submitForm()">
+			<div class="form-group">
+				<h3 class="control-label col-sm-2" style="color:blue">Signup</h3>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="usernameID">Username:</label>
+				<div class="col-sm-5">
+					<input type="text" class="form-control" name="username" id="usernameID"
+						placeholder="Enter Username" ng-model="username"/>
+					<span style="color:red">{{usernameError}}</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="passwordID">Password:</label>
+				<div class="col-sm-5">
+					<input type="password" class="form-control" name="password" id="passwordID"
+						placeholder="Enter Password" ng-model="password"/>
+					<span style="color:red">{{passwordError}}</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="repeatPasswordID">Password:</label>
+				<div class="col-sm-5">
+					<input type="password" class="form-control" name="repeatPassword" id="repeatPasswordID"
+						   placeholder="Re-enter Password" ng-model="repeatPassword"/>
+					<span style="color:red">{{repeatPasswordError}}</span>
+				</div>
+			</div>
+			<div class="col-sm-offset-2 col-sm-10">
+				<span style="color:red">{{signupResultMessage}}</span>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-primary">Sign up</button>
+				</div>
+				<!--<div class="col-sm-offset-2 col-sm-10">-->
+					<!--, please click login button here<button type="button" class="btn btn-primary" ng-click="login()">Login</button>-->
+				<!--</div>-->
+			</div>
+		</form>
+
+		<!--<div class="col-sm-offset-2 col-sm-10">-->
+			<!--<p>{{signupResultMessage}}</p>-->
+		<!--</div>-->
+	</div>
+</div>
+</div>
+</body>
+</html>

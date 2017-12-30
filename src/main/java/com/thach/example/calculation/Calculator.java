@@ -3,7 +3,7 @@ package com.thach.example.calculation;
 /**
  * Created by THACH-PC
  */
-public abstract class Calculator implements Historical{
+public abstract class Calculator implements Historical {
 
     protected String user;
 

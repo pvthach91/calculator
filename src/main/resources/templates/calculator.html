@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+
+<html>
+<head>
+	  <title>Calculator</title>
+	  <meta charset="utf-8" />
+	  <meta name="viewport" content="width=device-width, initial-scale=1" />
+	  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	  <script src="/js/calculatorcontroller.js"></script>
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+</head>
+<body>
+
+<div class="container" ng-app="app" ng-controller="calculatorcontroller">
+	<div style="margin-top: 20px; margin-bottom: 10px;">
+		<button id="btn-logout" type="button" class="btn btn-primary" ng-click="logout()">Logout</button>
+	</div>
+	<div style="border: solid 2px green">
+	<div>
+		<form class="form-horizontal" name="customerForm" ng-submit="submitForm()">
+			<div class="form-group">
+				<h3 class="control-label col-sm-2" style="color:blue">Calculator</h3>
+			</div>
+
+
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="firstNumberID">First Number:</label>
+				<div class="col-sm-5">
+					<input type="text" class="form-control" name="firstNumber" id="firstNumberID"
+						placeholder="Enter Number" ng-model="firstNumber" maxlength="5"/>
+					<span style="color: red">{{firstNumberError}}</span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="firstNumberID">Operation:</label>
+				<div class="col-sm-5">
+					<label style="font-size: 20px"><input type="radio" ng-model="operation" value="addition"/>+</label>
+					<label style="font-size: 40px; margin-left: 40px"><input type="radio" ng-model="operation" value="subtraction"/>-</label>
+					<label style="font-size: 30px; margin-left: 40px"><input type="radio" ng-model="operation" value="multiplication"/>*</label>
+					<label style="font-size: 30px; margin-left: 40px"><input type="radio" ng-model="operation" value="division"/>/</label>
+					<label style="font-size: 15px; margin-left: 40px"><input type="radio" ng-model="operation" value="square"/>sqr</label>
+					<p style="color: red">{{operationError}}</p>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="secondNumberID">Second Number:</label>
+				<div class="col-sm-5">
+					<input type="text" class="form-control" name="secondNumber" id="secondNumberID"
+						placeholder="Enter Number" ng-model="secondNumber" maxlength="5"/>
+					<span style="color: red">{{secondNumberError}}</span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label col-sm-2">Result:</label>
+				<div class="col-sm-5">
+					<label class="control-label">{{calculateResultMessage}}</label>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-primary">Calculate</button>
+					<button id="btn-id" type="button" class="btn btn-primary" ng-click="viewHistory()">View History</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+</div>
+</body>
+</html>

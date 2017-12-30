@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+
+<html>
+<head>
+	  <title>History</title>
+	  <meta charset="utf-8" />
+	  <meta name="viewport" content="width=device-width, initial-scale=1" />
+	  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	  <script src="/js/historycontroller.js"></script>
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+	<style>
+		table, th , td {
+			border: 1px solid grey;
+			border-collapse: collapse;
+			padding: 5px;
+		}
+
+		table tr:nth-child(odd) {
+			background-color: #f2f2f2;
+		}
+	</style>
+</head>
+<body>
+
+<div class="container" ng-app="app" ng-controller="historycontroller">
+
+	<div style="margin-top: 20px; margin-bottom: 10px;">
+		<button id="btn-logout" type="button" class="btn btn-primary" ng-click="logout()">Logout</button>
+		<button type="button" class="btn btn-primary" ng-click="calculate()">Go to Calculate Page</button>
+	</div>
+	<div style="margin-top: 50px; margin-bottom: 10px;">
+		<h3 style="color: blue">All histories</h3>
+	</div>
+	<div>
+		<button type="submit" class="btn btn-primary">Refresh</button>
+		<div style="margin-top: 10px">
+			<table>
+				<tr>
+					<th style="width: 300px">Content</th>
+					<th style="width: 100px">Date</th>
+				</tr>
+				<tr ng-repeat = "content in histories">
+					<td>{{ content.content }}</td>
+					<td>{{ content.date }}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+</body>
+</html>

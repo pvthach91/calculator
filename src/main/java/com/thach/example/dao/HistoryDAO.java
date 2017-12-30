@@ -2,7 +2,6 @@ package com.thach.example.dao;
 
 import com.thach.example.model.CalculationUser;
 import com.thach.example.model.History;
-import org.hibernate.Criteria;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

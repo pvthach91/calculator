@@ -2,8 +2,8 @@ package com.thach.example.controller;
 
 import com.thach.example.error.EnumError;
 import com.thach.example.model.CalculationUser;
-import com.thach.example.service.HistoryService;
 import com.thach.example.model.History;
+import com.thach.example.service.HistoryService;
 import com.thach.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Collections;
 import java.util.List;
 
 /**

@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+
+<html>
+<head>
+	  <title>Login</title>
+	  <meta charset="utf-8" />
+	  <meta name="viewport" content="width=device-width, initial-scale=1" />
+	  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	  <script src="/js/logincontroller.js"></script>
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+	  
+</head>
+<body>
+
+<div class="container" ng-app="app" ng-controller="logincontroller">
+	<div style="margin-top: 20px; margin-bottom: 10px;">
+		<button id="btn-logout" type="button" class="btn btn-primary" ng-click="signup()">Signup</button>
+		<label style="color:blue">If you haven't had an account yet</label>
+	</div>
+	<div style="border: solid 2px green">
+	<div>
+		<form class="form-horizontal" name="customerForm" ng-submit="submitForm()">
+			<div class="form-group">
+				<h3 class="control-label col-sm-2" style="color:blue">Login</h3>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="usernameID">Username:</label>
+				<div class="col-sm-5">
+					<input type="text" class="form-control" name="username" id="usernameID"
+						placeholder="Enter Username" ng-model="username"/>
+					<span style="color:red">{{usernameError}}</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="passwordID">Password:</label>
+				<div class="col-sm-5">
+					<input type="password" class="form-control" name="password" id="passwordID"
+						placeholder="Enter Password" ng-model="password"/>
+					<span style="color:red">{{passwordError}}</span>
+				</div>
+			</div>
+			<div class="col-sm-offset-2 col-sm-10">
+				<p style="color:red">{{loginResultMessage}}</p>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-primary">Login</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+</div>
+</body>
+</html>

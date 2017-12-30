@@ -1,5 +1,6 @@
 package com.thach.example.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.io.Serializable;
@@ -8,12 +9,14 @@ import java.io.Serializable;
  * Created by THACH-PC
  */
 
-@Entity
+@Entity(name = "user")
 public class CalculationUser implements Serializable{
 
     @Id
+    @Column(name = "username", nullable = false)
     private String username;
 
+    @Column(name = "password", nullable = false)
     private String password;
 
     public CalculationUser() {
