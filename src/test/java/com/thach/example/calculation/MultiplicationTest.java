@@ -40,4 +40,13 @@ public class MultiplicationTest {
         double actual = multiplication.calculate();
         assertNotEquals(7.0, actual, 0);
     }
+
+    @Test
+    public void testGenerateHistory() throws Exception {
+        double first = 12;
+        double second = 4;
+        Multiplication multiplication = new Multiplication("thach", first, second);
+        String expect = first + " * " + second + " = " + multiplication.calculate();
+        assertEquals(expect, multiplication.generateHistory());
+    }
 }

@@ -30,10 +30,6 @@ public class HistoryService {
         return result;
     }
 
-    public void createHistory(History history){
-        historyDAO.createHistory(history);
-    }
-
     public void createHistory(Historical historical){
         CalculationUser user = userService.findUser(historical.getUser());
         if (user != null){

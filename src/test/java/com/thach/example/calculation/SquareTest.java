@@ -40,4 +40,12 @@ public class SquareTest {
         double actual = square.calculate();
         assertNotEquals(5.0, actual, 0);
     }
+
+    @Test
+    public void testGenerateHistory() throws Exception {
+        double number = 12;
+        Square square = new Square("thach", number);
+        String expect = number + " square " + "= " + square.calculate();
+        assertEquals(expect, square.generateHistory());
+    }
 }

@@ -40,4 +40,13 @@ public class SubtractionTest {
         double actual = subtraction.calculate();
         assertNotEquals(6.0, actual, 0);
     }
+
+    @Test
+    public void testGenerateHistory() throws Exception {
+        double first = 12;
+        double second = 4;
+        Subtraction subtraction = new Subtraction("thach", first, second);
+        String expect = first + " - " + second + " = " + subtraction.calculate();
+        assertEquals(expect, subtraction.generateHistory());
+    }
 }

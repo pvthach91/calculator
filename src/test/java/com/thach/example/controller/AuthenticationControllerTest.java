@@ -3,6 +3,7 @@ package com.thach.example.controller;
 import com.thach.example.CalculatorApplication;
 import com.thach.example.model.CalculationUser;
 import com.thach.example.service.UserService;
+import com.thach.example.util.MD5;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -50,29 +51,8 @@ public class AuthenticationControllerTest {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
     }
 
-    @Test(expected = Exception.class)
-    public void testSignupFailed() throws Exception {
-        CalculationUser user = new CalculationUser("thach", "pass");
-        Mockito.when(userService.findUser(Mockito.anyString())).thenReturn(user);
-
-        String userJson = "{\"username\": \"thach\", \"password\": \"pass\"}";
-
-        RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .post("/signup")
-                .accept(MediaType.APPLICATION_JSON).content(userJson)
-                .contentType(MediaType.APPLICATION_JSON);
-
-        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
-
-        MockHttpServletResponse response = result.getResponse();
-
-        assertEquals(HttpStatus.OK.value(), response.getStatus());
-        assertNotNull(response.getContentAsString());
-    }
-
     @Test
     public void testSignupSuccess() throws Exception {
-        CalculationUser user = new CalculationUser("thach", "pass");
         Mockito.when(userService.findUser(Mockito.anyString())).thenReturn(null);
 
         String userJson = "{\"username\": \"thach\", \"password\": \"pass\"}";
@@ -91,8 +71,58 @@ public class AuthenticationControllerTest {
     }
 
     @Test(expected = Exception.class)
-    public void testLogin() throws Exception {
+    public void testSignupFailWithExistUser() throws Exception {
         CalculationUser user = new CalculationUser("thach", "pass");
+        Mockito.when(userService.findUser(Mockito.anyString())).thenReturn(user);
+
+        String userJson = "{\"username\": \"thach\", \"password\": \"pass\"}";
+
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+                .post("/signup")
+                .accept(MediaType.APPLICATION_JSON).content(userJson)
+                .contentType(MediaType.APPLICATION_JSON);
+
+        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+    }
+
+    @Test(expected = Exception.class)
+    public void testSignupFailWithNoUsernamePassword() throws Exception {
+        // Username and password are empty
+        CalculationUser user = new CalculationUser("", "");
+        Mockito.when(userService.findUser(Mockito.anyString())).thenReturn(user);
+
+        String userJson = "{\"username\": \"thach\", \"password\": \"pass\"}";
+
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+                .post("/signup")
+                .accept(MediaType.APPLICATION_JSON).content(userJson)
+                .contentType(MediaType.APPLICATION_JSON);
+
+        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+    }
+
+    @Test(expected = Exception.class)
+    public void testSignupFailWithInvalidLength() throws Exception {
+        // Username's length is 2, password's length is 3
+        CalculationUser user = new CalculationUser("th", "pas");
+
+        Mockito.when(userService.findUser(Mockito.anyString())).thenReturn(user);
+
+        String userJson = "{\"username\": \"thach\", \"password\": \"pass\"}";
+
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+                .post("/signup")
+                .accept(MediaType.APPLICATION_JSON).content(userJson)
+                .contentType(MediaType.APPLICATION_JSON);
+
+        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+    }
+
+    @Test()
+    public void testLoginSuccess() throws Exception {
+        CalculationUser user = new CalculationUser("thach", "pass");
+        String md5Password = MD5.getMD5("pass");
+        user.setPassword(md5Password);
         Mockito.when(userService.findUser(Mockito.anyString())).thenReturn(user);
 
         String userJson = "{\"username\": \"thach\", \"password\": \"pass\"}";
@@ -108,5 +138,40 @@ public class AuthenticationControllerTest {
 
         assertEquals(HttpStatus.OK.value(), response.getStatus());
         assertNotNull(response.getContentAsString());
+    }
+
+    @Test(expected = Exception.class)
+    public void testLoginFailWithNoUsernamePassword() throws Exception {
+        // Username and password are empty
+        CalculationUser user = new CalculationUser("", "");
+        Mockito.when(userService.findUser(Mockito.anyString())).thenReturn(user);
+
+        String userJson = "{\"username\": \"thach\", \"password\": \"pass\"}";
+
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+                .post("/login")
+                .accept(MediaType.APPLICATION_JSON).content(userJson)
+                .contentType(MediaType.APPLICATION_JSON);
+
+        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+    }
+
+    @Test(expected = Exception.class)
+    public void testLoginFailWithWrongPassword() throws Exception {
+        String inputPassword = "pass";
+        CalculationUser user = new CalculationUser("thach", inputPassword);
+        String md5Password = MD5.getMD5(inputPassword);
+        user.setPassword(md5Password);
+        Mockito.when(userService.findUser(Mockito.anyString())).thenReturn(user);
+
+        // 'pass2' is a wrong password, the actual is 'pass'
+        String userJson = "{\"username\": \"thach\", \"password\": \"pass2\"}";
+
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+                .post("/login")
+                .accept(MediaType.APPLICATION_JSON).content(userJson)
+                .contentType(MediaType.APPLICATION_JSON);
+
+        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
     }
 }

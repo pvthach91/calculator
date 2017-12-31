@@ -40,4 +40,13 @@ public class AdditionTest {
         double actual = addition.calculate();
         assertNotEquals(7.0, actual, 0);
     }
+
+    @Test
+    public void testGenerateHistory() throws Exception {
+        double first = 2;
+        double second = 4;
+        Addition addition = new Addition("thach", first, second);
+        String expect = first + " + " + second + " = " + addition.calculate();
+        assertEquals(expect, addition.generateHistory());
+    }
 }

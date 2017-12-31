@@ -40,4 +40,13 @@ public class DivisionTest {
         double actual = division.calculate();
         assertNotEquals(3.0, actual, 0);
     }
+
+    @Test
+    public void testGenerateHistory() throws Exception {
+        double first = 12;
+        double second = 4;
+        Division division = new Division("thach", first, second);
+        String expect = first + " / " + second + " = " + division.calculate();
+        assertEquals(expect, division.generateHistory());
+    }
 }
