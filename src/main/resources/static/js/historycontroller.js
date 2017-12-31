@@ -6,7 +6,7 @@ app.controller('historycontroller', function($scope, $http, $location, $window) 
         $window.location.href = url;
     }
 
-	$scope.submitForm = function(){
+	$scope.refresh = function(){
         var url = $location.absUrl();
         var config = {
             headers : {
@@ -32,5 +32,5 @@ app.controller('historycontroller', function($scope, $http, $location, $window) 
         $window.location.href = url;
     }
 
-    $scope.submitForm();
+    $scope.refresh();
 });
