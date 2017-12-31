@@ -134,4 +134,27 @@ public class CalculationControllerTest {
         Double expect = division.calculate();
         assertEquals(expect.toString(), response.getContentAsString());
     }
+
+    @Test(expected = Exception.class)
+    public void testTwoParamCalculateFail() throws Exception {
+        // Set user as empty for fail calculating
+        String calculation = "{\"user\": \"\", \"type\": \"division\", \"firstParam\": \"10\", \"secondParam\": \"3\"}";
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+                .post("/calculateTwoParam")
+                .accept(MediaType.APPLICATION_JSON).content(calculation)
+                .contentType(MediaType.APPLICATION_JSON);
+
+        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+    }
+
+    @Test(expected = Exception.class)
+    public void testOneParamCalculateFail() throws Exception {
+        String calculation = "{\"user\": \"\", \"type\": \"square\", \"param\": \"2\"}";
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+                .post("/calculateOneParam")
+                .accept(MediaType.APPLICATION_JSON).content(calculation)
+                .contentType(MediaType.APPLICATION_JSON);
+
+        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+    }
 }

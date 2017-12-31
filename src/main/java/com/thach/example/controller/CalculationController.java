@@ -4,7 +4,6 @@ import com.thach.example.calculation.OneParamCalculation;
 import com.thach.example.calculation.TwoParamCalculation;
 import com.thach.example.error.EnumError;
 import com.thach.example.service.HistoryService;
-import com.thach.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,9 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CalculationController {
 
-//    @Autowired
-//    private UserService userService;
-
     @Autowired
     private HistoryService historyService;
 
@@ -28,7 +24,7 @@ public class CalculationController {
     public double calculateOneParam(@RequestBody OneParamCalculation calculation) throws Exception {
         String user = calculation.getUser();
         if (user == null || user.isEmpty()){
-            throw new Exception(EnumError.NEED_LOG_IN.getDescription());
+            throw new Exception(EnumError.USER_EMPTY_NEED_LOG_IN.getDescription());
         }
         historyService.createHistory(calculation);
 
@@ -39,7 +35,7 @@ public class CalculationController {
     public double calculateTwoParam(@RequestBody TwoParamCalculation calculation) throws Exception {
         String user = calculation.getUser();
         if (user == null || user.isEmpty()){
-            throw new Exception(EnumError.NEED_LOG_IN.getDescription());
+            throw new Exception(EnumError.USER_EMPTY_NEED_LOG_IN.getDescription());
         }
         historyService.createHistory(calculation);
 

@@ -9,14 +9,14 @@ import java.io.Serializable;
  * Created by THACH-PC
  */
 
-@Entity(name = "user")
+@Entity(name = "USER")
 public class CalculationUser implements Serializable{
 
     @Id
-    @Column(name = "username", nullable = false)
+    @Column(name = "USERNAME", nullable = false)
     private String username;
 
-    @Column(name = "password", nullable = false)
+    @Column(name = "PASSWORD", nullable = false)
     private String password;
 
     public CalculationUser() {

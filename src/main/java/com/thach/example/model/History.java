@@ -9,15 +9,15 @@ import java.util.Date;
  * Created by THACH-PC
  */
 
-@Entity(name = "history")
+@Entity(name = "HISTORY")
 public class History implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @Column(name = "ID")
     private Integer id;
 
-    @Column(name = "content")
+    @Column(name = "CONTENT")
     private String content;
 
     @Column(name = "date")
@@ -25,7 +25,7 @@ public class History implements Serializable{
     private Date date;
 
     @ManyToOne
-    @JoinColumn(name = "created_by")
+    @JoinColumn(name = "CREATED_BY")
     private CalculationUser createdBy;
 
     public History() {

@@ -29,12 +29,12 @@ public class HistoryController {
     @RequestMapping(method = RequestMethod.POST, value = "/history")
     public List<History> getHistories(@RequestBody String username) throws Exception {
         if (username == null || username.isEmpty()){
-            throw new Exception(EnumError.NEED_LOG_IN.getDescription());
+            throw new Exception(EnumError.USER_EMPTY_NEED_LOG_IN.getDescription());
         }
 
         CalculationUser user = userService.findUser(username);
         if (user == null){
-            throw new Exception(EnumError.NEED_LOG_IN.getDescription());
+            throw new Exception(EnumError.USER_EMPTY_NEED_LOG_IN.getDescription());
         }
 
         return historyService.getHistoriesByUser(user);
