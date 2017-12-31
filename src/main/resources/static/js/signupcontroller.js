@@ -1,6 +1,7 @@
 var app = angular.module('app', []);
 app.controller('signupcontroller', function($scope, $http, $location, $window) {
 	$scope.submitForm = function(){
+        $scope.signupResultMessage = "";
         var username = $scope.username;
         var password = $scope.password;
         var repeatPassword = $scope.repeatPassword;

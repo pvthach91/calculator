@@ -53,7 +53,7 @@ public class WebControllerTest {
     public void setup() {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
 
-        History history = new History("1 + 1 = 2", new Date(), new CalculationUser("thach", "thach"));
+        History history = new History("1 + 1 = 2", new Date(), new CalculationUser("testUser", "pass"));
         histories.add(history);
     }
 

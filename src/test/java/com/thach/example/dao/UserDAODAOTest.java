@@ -32,7 +32,7 @@ public class UserDAODAOTest {
     @Test
     @Transactional
     public void testUserDAO() throws Exception {
-        CalculationUser user = new CalculationUser("test", "pass");
+        CalculationUser user = new CalculationUser("testUser", "pass");
         userDAO.create(user);
 
         CalculationUser savedUser = userDAO.find(user.getUsername());

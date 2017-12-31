@@ -34,14 +34,14 @@ public class UserServiceTest {
 
     @Before
     public void setup() {
-        user = new CalculationUser("thach", "pass");
+        user = new CalculationUser("testUser", "pass");
     }
 
     @Test
     public void findUser() throws Exception {
         Mockito.when(userDAO.find(Mockito.anyString())).thenReturn(user);
-        CalculationUser user = new CalculationUser("thach", "pass");
-        CalculationUser result = userService.findUser("thach");
+        CalculationUser user = new CalculationUser("testUser", "pass");
+        CalculationUser result = userService.findUser("testUser");
 
         assertEquals(result.getUsername(), result.getUsername());
     }

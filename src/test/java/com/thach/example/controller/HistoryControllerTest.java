@@ -4,6 +4,7 @@ import com.thach.example.CalculatorApplication;
 import com.thach.example.model.CalculationUser;
 import com.thach.example.model.History;
 import com.thach.example.service.HistoryService;
+import com.thach.example.service.UserService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -47,23 +48,30 @@ public class HistoryControllerTest {
     @MockBean
     private HistoryService historyService;
 
+    @MockBean
+    private UserService userService;
+
     private List<History> histories = new ArrayList<History>();
+
+    private CalculationUser user;
 
     @Before
     public void setup() {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
 
-        History history = new History("1 + 1 = 2", new Date(), new CalculationUser("thach", "thach"));
+        History history = new History("1 + 1 = 2", new Date(), new CalculationUser("testUser", "pass"));
         histories.add(history);
+        user = new CalculationUser("testUser", "pass");
     }
 
     @Test
     public void getHistories() throws Exception {
         Mockito.when(historyService.getHistoriesByUser(Mockito.any(CalculationUser.class))).thenReturn(histories);
+        Mockito.when(userService.findUser(Mockito.anyString())).thenReturn(user);
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .post("/history")
-                .accept(MediaType.APPLICATION_JSON).content("thach")
+                .accept(MediaType.APPLICATION_JSON).content("testUser")
                 .contentType(MediaType.APPLICATION_JSON);
 
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();

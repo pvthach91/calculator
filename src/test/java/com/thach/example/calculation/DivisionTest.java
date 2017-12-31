@@ -26,14 +26,14 @@ public class DivisionTest {
 
     @Test
     public void testAddition() throws Exception {
-        Division division = new Division("thach", 2, 4);
+        Division division = new Division("testUser", 2, 4);
         double actual = division.calculate();
         assertEquals(0.5, actual, 0);
     }
 
     @Test
     public void testWrongAddition() throws Exception {
-        Division division = new Division("thach", 4, 2);
+        Division division = new Division("testUser", 4, 2);
         double actual = division.calculate();
         assertNotEquals(3.0, actual, 0);
     }
@@ -42,7 +42,7 @@ public class DivisionTest {
     public void testGenerateHistory() throws Exception {
         double first = 12;
         double second = 4;
-        Division division = new Division("thach", first, second);
+        Division division = new Division("testUser", first, second);
         String expect = first + " / " + second + " = " + division.calculate();
         assertEquals(expect, division.generateHistory());
     }

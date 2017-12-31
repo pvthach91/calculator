@@ -26,14 +26,14 @@ public class SubtractionTest {
 
     @Test
     public void testSubtraction() throws Exception {
-        Subtraction subtraction = new Subtraction("thach", 10, 3);
+        Subtraction subtraction = new Subtraction("testUser", 10, 3);
         double actual = subtraction.calculate();
         assertEquals(7.0, actual, 0);
     }
 
     @Test
     public void testWrongSubtraction() throws Exception {
-        Subtraction subtraction = new Subtraction("thach", 10, 3);
+        Subtraction subtraction = new Subtraction("testUser", 10, 3);
         double actual = subtraction.calculate();
         assertNotEquals(6.0, actual, 0);
     }
@@ -42,7 +42,7 @@ public class SubtractionTest {
     public void testGenerateHistory() throws Exception {
         double first = 12;
         double second = 4;
-        Subtraction subtraction = new Subtraction("thach", first, second);
+        Subtraction subtraction = new Subtraction("testUser", first, second);
         String expect = first + " - " + second + " = " + subtraction.calculate();
         assertEquals(expect, subtraction.generateHistory());
     }

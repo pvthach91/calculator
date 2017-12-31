@@ -42,7 +42,7 @@ public class CalculationControllerTest {
 
     @Test
     public void testSquare() throws Exception {
-        String calculation = "{\"user\": \"thach\", \"type\": \"square\", \"param\": \"2\"}";
+        String calculation = "{\"user\": \"testUser\", \"type\": \"square\", \"param\": \"2\"}";
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .post("/calculateOneParam")
                 .accept(MediaType.APPLICATION_JSON).content(calculation)
@@ -54,14 +54,14 @@ public class CalculationControllerTest {
 
         assertEquals(HttpStatus.OK.value(), response.getStatus());
 
-        Square square = new Square("thach", 2);
+        Square square = new Square("testUser", 2);
         Double expect = square.calculate();
         assertEquals(expect.toString(), response.getContentAsString());
     }
 
     @Test
     public void testAddition() throws Exception {
-        String calculation = "{\"user\": \"thach\", \"type\": \"addition\", \"firstParam\": \"2\", \"secondParam\": \"4\"}";
+        String calculation = "{\"user\": \"testUser\", \"type\": \"addition\", \"firstParam\": \"2\", \"secondParam\": \"4\"}";
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .post("/calculateTwoParam")
                 .accept(MediaType.APPLICATION_JSON).content(calculation)
@@ -73,14 +73,14 @@ public class CalculationControllerTest {
 
         assertEquals(HttpStatus.OK.value(), response.getStatus());
 
-        Addition addition = new Addition("thach", 2, 4);
+        Addition addition = new Addition("testUser", 2, 4);
         Double expect = addition.calculate();
         assertEquals(expect.toString(), response.getContentAsString());
     }
 
     @Test
     public void testSubtraction() throws Exception {
-        String calculation = "{\"user\": \"thach\", \"type\": \"subtraction\", \"firstParam\": \"10\", \"secondParam\": \"3\"}";
+        String calculation = "{\"user\": \"testUser\", \"type\": \"subtraction\", \"firstParam\": \"10\", \"secondParam\": \"3\"}";
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .post("/calculateTwoParam")
                 .accept(MediaType.APPLICATION_JSON).content(calculation)
@@ -92,14 +92,14 @@ public class CalculationControllerTest {
 
         assertEquals(HttpStatus.OK.value(), response.getStatus());
 
-        Subtraction subtraction = new Subtraction("thach", 10, 3);
+        Subtraction subtraction = new Subtraction("testUser", 10, 3);
         Double expect = subtraction.calculate();
         assertEquals(expect.toString(), response.getContentAsString());
     }
 
     @Test
     public void testMultiplication() throws Exception {
-        String calculation = "{\"user\": \"thach\", \"type\": \"multiplication\", \"firstParam\": \"10\", \"secondParam\": \"3\"}";
+        String calculation = "{\"user\": \"testUser\", \"type\": \"multiplication\", \"firstParam\": \"10\", \"secondParam\": \"3\"}";
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .post("/calculateTwoParam")
                 .accept(MediaType.APPLICATION_JSON).content(calculation)
@@ -111,14 +111,14 @@ public class CalculationControllerTest {
 
         assertEquals(HttpStatus.OK.value(), response.getStatus());
 
-        Multiplication multiplication = new Multiplication("thach", 10, 3);
+        Multiplication multiplication = new Multiplication("testUser", 10, 3);
         Double expect = multiplication.calculate();
         assertEquals(expect.toString(), response.getContentAsString());
     }
 
     @Test
     public void testDivision() throws Exception {
-        String calculation = "{\"user\": \"thach\", \"type\": \"division\", \"firstParam\": \"10\", \"secondParam\": \"3\"}";
+        String calculation = "{\"user\": \"testUser\", \"type\": \"division\", \"firstParam\": \"10\", \"secondParam\": \"3\"}";
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .post("/calculateTwoParam")
                 .accept(MediaType.APPLICATION_JSON).content(calculation)
@@ -130,7 +130,7 @@ public class CalculationControllerTest {
 
         assertEquals(HttpStatus.OK.value(), response.getStatus());
 
-        Division division = new Division("thach", 10, 3);
+        Division division = new Division("testUser", 10, 3);
         Double expect = division.calculate();
         assertEquals(expect.toString(), response.getContentAsString());
     }

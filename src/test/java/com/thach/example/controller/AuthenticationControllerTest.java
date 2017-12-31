@@ -52,7 +52,7 @@ public class AuthenticationControllerTest {
     public void testSignupSuccess() throws Exception {
         Mockito.when(userService.findUser(Mockito.anyString())).thenReturn(null);
 
-        String userJson = "{\"username\": \"thach\", \"password\": \"pass\"}";
+        String userJson = "{\"username\": \"testUser\", \"password\": \"pass\"}";
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .post("/signup")
@@ -72,7 +72,7 @@ public class AuthenticationControllerTest {
         CalculationUser user = new CalculationUser("thach", "pass");
         Mockito.when(userService.findUser(Mockito.anyString())).thenReturn(user);
 
-        String userJson = "{\"username\": \"thach\", \"password\": \"pass\"}";
+        String userJson = "{\"username\": \"testUser\", \"password\": \"pass\"}";
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .post("/signup")
@@ -88,7 +88,7 @@ public class AuthenticationControllerTest {
         CalculationUser user = new CalculationUser("", "");
         Mockito.when(userService.findUser(Mockito.anyString())).thenReturn(user);
 
-        String userJson = "{\"username\": \"thach\", \"password\": \"pass\"}";
+        String userJson = "{\"username\": \"testUser\", \"password\": \"pass\"}";
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .post("/signup")
@@ -105,7 +105,7 @@ public class AuthenticationControllerTest {
 
         Mockito.when(userService.findUser(Mockito.anyString())).thenReturn(user);
 
-        String userJson = "{\"username\": \"thach\", \"password\": \"pass\"}";
+        String userJson = "{\"username\": \"testUser\", \"password\": \"pass\"}";
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .post("/signup")
@@ -122,7 +122,7 @@ public class AuthenticationControllerTest {
         user.setPassword(md5Password);
         Mockito.when(userService.findUser(Mockito.anyString())).thenReturn(user);
 
-        String userJson = "{\"username\": \"thach\", \"password\": \"pass\"}";
+        String userJson = "{\"username\": \"testUser\", \"password\": \"pass\"}";
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .post("/login")
@@ -143,7 +143,7 @@ public class AuthenticationControllerTest {
         CalculationUser user = new CalculationUser("", "");
         Mockito.when(userService.findUser(Mockito.anyString())).thenReturn(user);
 
-        String userJson = "{\"username\": \"thach\", \"password\": \"pass\"}";
+        String userJson = "{\"username\": \"testUser\", \"password\": \"pass\"}";
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .post("/login")
@@ -156,13 +156,13 @@ public class AuthenticationControllerTest {
     @Test(expected = Exception.class)
     public void testLoginFailWithWrongPassword() throws Exception {
         String inputPassword = "pass";
-        CalculationUser user = new CalculationUser("thach", inputPassword);
+        CalculationUser user = new CalculationUser("testUser", inputPassword);
         String md5Password = MD5.getMD5(inputPassword);
         user.setPassword(md5Password);
         Mockito.when(userService.findUser(Mockito.anyString())).thenReturn(user);
 
         // 'pass2' is a wrong password, the actual is 'pass'
-        String userJson = "{\"username\": \"thach\", \"password\": \"pass2\"}";
+        String userJson = "{\"username\": \"testUser\", \"password\": \"pass2\"}";
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .post("/login")

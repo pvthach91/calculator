@@ -1,6 +1,7 @@
 var app = angular.module('app', []);
 app.controller('logincontroller', function($scope, $http, $location, $window) {
     	$scope.submitForm = function(){
+            $scope.loginResultMessage = "";
             var username = $scope.username;
             var password = $scope.password;
             var isValid = true;

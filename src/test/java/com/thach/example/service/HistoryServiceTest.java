@@ -39,14 +39,14 @@ public class HistoryServiceTest {
 
     @Before
     public void setup() {
-        History history = new History("1 + 1 = 2", new Date(), new CalculationUser("thach", "thach"));
+        History history = new History("1 + 1 = 2", new Date(), new CalculationUser("testUser", "pass"));
         histories.add(history);
     }
 
     @Test
     public void getHistories() throws Exception {
         Mockito.when(historyDAO.getHistoriesByUser(Mockito.any(CalculationUser.class))).thenReturn(histories);
-        CalculationUser user = new CalculationUser("thach", "pass");
+        CalculationUser user = new CalculationUser("testUser", "pass");
         List<History> result = historyService.getHistoriesByUser(user);
 
         assertEquals(result.size(), histories.size());

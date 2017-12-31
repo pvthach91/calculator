@@ -39,7 +39,7 @@ public class HistoryDAOTest {
     @Test
     @Transactional
     public void getHistories() throws Exception {
-        CalculationUser user = new CalculationUser("test", "pass");
+        CalculationUser user = new CalculationUser("testUser", "pass");
         userDAO.create(user);
 
         CalculationUser savedUser = userDAO.find(user.getUsername());

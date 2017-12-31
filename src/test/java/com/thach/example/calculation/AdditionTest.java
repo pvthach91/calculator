@@ -26,14 +26,14 @@ public class AdditionTest {
 
     @Test
     public void testAddition() throws Exception {
-        Addition addition = new Addition("thach", 2, 4);
+        Addition addition = new Addition("testUser", 2, 4);
         double actual = addition.calculate();
         assertEquals(6.0, actual, 0);
     }
 
     @Test
     public void testWrongAddition() throws Exception {
-        Addition addition = new Addition("thach", 2, 4);
+        Addition addition = new Addition("testUser", 2, 4);
         double actual = addition.calculate();
         assertNotEquals(7.0, actual, 0);
     }
@@ -42,7 +42,7 @@ public class AdditionTest {
     public void testGenerateHistory() throws Exception {
         double first = 2;
         double second = 4;
-        Addition addition = new Addition("thach", first, second);
+        Addition addition = new Addition("testUser", first, second);
         String expect = first + " + " + second + " = " + addition.calculate();
         assertEquals(expect, addition.generateHistory());
     }

@@ -26,14 +26,14 @@ public class SquareTest {
 
     @Test
     public void testAddition() throws Exception {
-        Square square = new Square("thach", 2);
+        Square square = new Square("testUser", 2);
         double actual = square.calculate();
         assertEquals(4.0, actual, 0);
     }
 
     @Test
     public void testWrongAddition() throws Exception {
-        Square square = new Square("thach", 2);
+        Square square = new Square("testUser", 2);
         double actual = square.calculate();
         assertNotEquals(5.0, actual, 0);
     }
@@ -41,7 +41,7 @@ public class SquareTest {
     @Test
     public void testGenerateHistory() throws Exception {
         double number = 12;
-        Square square = new Square("thach", number);
+        Square square = new Square("testUser", number);
         String expect = number + " square " + "= " + square.calculate();
         assertEquals(expect, square.generateHistory());
     }
