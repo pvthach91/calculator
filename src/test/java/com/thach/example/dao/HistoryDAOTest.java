@@ -1,20 +1,17 @@
-package com.thach.example.service;
+package com.thach.example.dao;
 
 import com.thach.example.CalculatorApplication;
-import com.thach.example.dao.HistoryDAO;
 import com.thach.example.model.CalculationUser;
 import com.thach.example.model.History;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -27,28 +24,33 @@ import static org.junit.Assert.assertEquals;
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = CalculatorApplication.class)
 @SpringBootTest
-public class HistoryServiceTest {
+public class HistoryDAOTest {
 
     @Autowired
-    private HistoryService historyService;
-
-    @MockBean
     private HistoryDAO historyDAO;
 
-    private List<History> histories = new ArrayList<History>();
+    @Autowired
+    private UserDAO userDAO;
 
     @Before
     public void setup() {
-        History history = new History("1 + 1 = 2", new Date(), new CalculationUser("thach", "thach"));
-        histories.add(history);
     }
 
     @Test
+    @Transactional
     public void getHistories() throws Exception {
-        Mockito.when(historyDAO.getHistoriesByUser(Mockito.any(CalculationUser.class))).thenReturn(histories);
-        CalculationUser user = new CalculationUser("thach", "pass");
-        List<History> result = historyService.getHistoriesByUser(user);
+        CalculationUser user = new CalculationUser("test", "pass");
+        userDAO.create(user);
 
-        assertEquals(result.size(), histories.size());
+        CalculationUser savedUser = userDAO.find(user.getUsername());
+
+        History history = new History("1 + 1 = 2", new Date(), savedUser);
+        historyDAO.createHistory(history);
+
+        List<History> savedHistories = historyDAO.getHistoriesByUser(user);
+        History savedHistory = savedHistories.get(0);
+
+        assertEquals(history.getContent(), savedHistory.getContent());
+        assertEquals(history.getDate(), savedHistory.getDate());
     }
 }

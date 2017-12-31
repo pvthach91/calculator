@@ -1,17 +1,15 @@
-package com.thach.example.service;
+package com.thach.example.dao;
 
 import com.thach.example.CalculatorApplication;
-import com.thach.example.dao.UserDAO;
 import com.thach.example.model.CalculationUser;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.Assert.assertEquals;
 
@@ -22,27 +20,24 @@ import static org.junit.Assert.assertEquals;
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = CalculatorApplication.class)
 @SpringBootTest
-public class UserServiceTest {
+public class UserDAODAOTest {
 
     @Autowired
-    private UserService userService;
-
-    @MockBean
     private UserDAO userDAO;
-
-    private CalculationUser user;
 
     @Before
     public void setup() {
-        user = new CalculationUser("thach", "pass");
     }
 
     @Test
-    public void findUser() throws Exception {
-        Mockito.when(userDAO.find(Mockito.anyString())).thenReturn(user);
-        CalculationUser user = new CalculationUser("thach", "pass");
-        CalculationUser result = userService.findUser("thach");
+    @Transactional
+    public void testUserDAO() throws Exception {
+        CalculationUser user = new CalculationUser("test", "pass");
+        userDAO.create(user);
 
-        assertEquals(result.getUsername(), result.getUsername());
+        CalculationUser savedUser = userDAO.find(user.getUsername());
+
+        assertEquals(user.getUsername(), savedUser.getUsername());
+        assertEquals(user.getPassword(), savedUser.getPassword());
     }
 }

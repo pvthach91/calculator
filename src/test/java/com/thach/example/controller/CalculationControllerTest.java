@@ -3,17 +3,15 @@ package com.thach.example.controller;
 import com.thach.example.CalculatorApplication;
 import com.thach.example.calculation.*;
 import org.junit.Before;
-import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
@@ -27,10 +25,9 @@ import static org.junit.Assert.assertEquals;
  * Created by THACH-PC
  */
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(SpringRunner.class)
 @ContextConfiguration(classes = CalculatorApplication.class)
 @SpringBootTest
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class CalculationControllerTest {
 
     private MockMvc mockMvc;
