@@ -9,10 +9,10 @@ import java.security.NoSuchAlgorithmException;
  */
 public class MD5 {
 
-    public static String getMD5(String input) {
+    public static String getMD5(CharSequence input) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
-            byte[] messageDigest = md.digest(input.getBytes());
+            byte[] messageDigest = md.digest(input.toString().getBytes());
             BigInteger number = new BigInteger(1, messageDigest);
             String hashtext = number.toString(16);
             while (hashtext.length() < 32) {

@@ -1,4 +1,6 @@
-var app = angular.module('app', []);
+var app = angular.module('app', []).config(function($httpProvider){
+    $httpProvider.detail.headers.common["X-Requested-With"] = 'XMLHttpRequest';
+});
 app.controller('calculatorcontroller', function($scope, $http, $location, $window) {
     var user = $scope.name = $window.sessionStorage.getItem("user");
     if (user == null || user.length == 0){

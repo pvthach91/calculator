@@ -3,12 +3,17 @@ package com.thach.example.controller;
 import com.thach.example.error.EnumError;
 import com.thach.example.model.CalculationUser;
 import com.thach.example.service.UserService;
+import com.thach.example.util.CalculatorPasswordEncoder;
 import com.thach.example.util.MD5;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.security.Principal;
 
 /**
  * Created by THACH-PC
@@ -23,21 +28,27 @@ public class AuthenticationController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(method = RequestMethod.POST, value = "/login")
-    public CalculationUser login(@RequestBody CalculationUser user) throws Exception {
-        //Check if user inputs username and password
-        boolean isUsernameValid = user.getUsername() != null && !user.getUsername().isEmpty();
-        boolean isPasswordValid = user.getPassword() != null && !user.getPassword().isEmpty();
-        if (!isUsernameValid || !isPasswordValid){
-            throw new Exception(EnumError.USER_PASSWORD_MISSING.getDescription());
-        }
+//    @RequestMapping(method = RequestMethod.POST, value = "/login")
+//    public CalculationUser login(@RequestBody CalculationUser user) throws Exception {
+//        //Check if user inputs username and password
+//        boolean isUsernameValid = user.getUsername() != null && !user.getUsername().isEmpty();
+//        boolean isPasswordValid = user.getPassword() != null && !user.getPassword().isEmpty();
+//        if (!isUsernameValid || !isPasswordValid){
+//            throw new Exception(EnumError.USER_PASSWORD_MISSING.getDescription());
+//        }
+//
+//        CalculationUser savedUser = userService.findUser(user.getUsername());
+////        if (savedUser != null && savedUser.getPassword().equals(MD5.getMD5(user.getPassword()))){
+//        if (savedUser != null && savedUser.getPassword().equals(user.getPassword())){
+//            return savedUser;
+//        } else {
+//            throw new Exception(EnumError.USER_PASS_INVALID.getDescription());
+//        }
+//    }
 
-        CalculationUser savedUser = userService.findUser(user.getUsername());
-        if (savedUser != null && savedUser.getPassword().equals(MD5.getMD5(user.getPassword()))){
-            return savedUser;
-        } else {
-            throw new Exception(EnumError.USER_PASS_INVALID.getDescription());
-        }
+    @RequestMapping("/login")
+    public Principal login(Principal user) throws Exception {
+        return user;
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/signup")
@@ -59,12 +70,18 @@ public class AuthenticationController {
 
         CalculationUser savedUser = userService.findUser(user.getUsername());
         if (savedUser == null){
-            String md5Password = MD5.getMD5(user.getPassword());
+//            String md5Password = MD5.getMD5(user.getPassword());
+            String md5Password = passwordEncoder().encode(user.getPassword());
             user.setPassword(md5Password);
             userService.createUser(user);
             return user;
         } else {
             throw new Exception(EnumError.USER_EXIST.getDescription());
         }
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return new CalculatorPasswordEncoder();
     }
 }
