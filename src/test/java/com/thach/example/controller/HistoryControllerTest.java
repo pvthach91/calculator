@@ -83,8 +83,6 @@ public class HistoryControllerTest {
 
     @Test(expected = Exception.class)
     public void getHistoriesFailWithNoAuthentication() throws Exception {
-//        Mockito.when(historyService.getHistoriesByUser(Mockito.any(CalculationUser.class))).thenReturn(histories);
-//        Mockito.when(userService.findUser(Mockito.anyString())).thenReturn(user);
         RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
                 "/histories").accept(MediaType.APPLICATION_JSON);
 

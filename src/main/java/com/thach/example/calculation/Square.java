@@ -1,16 +1,15 @@
 package com.thach.example.calculation;
 
+import lombok.NoArgsConstructor;
+
 /**
  * Created by THACH-PC
  */
 
+@NoArgsConstructor
 public class Square extends OneParamCalculation {
 
-    public Square(){
-    }
-//    public Square(String user, double firstParam) {
     public Square(double firstParam) {
-//        super(user, firstParam);
         super(firstParam);
     }
 

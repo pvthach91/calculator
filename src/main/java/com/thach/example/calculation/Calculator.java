@@ -1,29 +1,13 @@
 package com.thach.example.calculation;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.NoArgsConstructor;
 
 /**
  * Created by THACH-PC
  */
+
+@NoArgsConstructor
 public abstract class Calculator implements Historical {
-
-//    protected String user;
-
-    public Calculator() {
-    }
-
-//    public Calculator(String user) {
-//        this.user = user;
-//    }
-//
-//    @Override
-//    public String getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(String user) {
-//        this.user = user;
-//    }
 
     public abstract double calculate();
 }

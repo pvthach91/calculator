@@ -37,14 +37,6 @@ public class History implements Serializable{
         this.createdBy = createdBy;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public String getContent() {
         return content;
     }
@@ -59,10 +51,6 @@ public class History implements Serializable{
 
     public void setDate(Date date) {
         this.date = date;
-    }
-
-    public CalculationUser getCreatedBy() {
-        return createdBy;
     }
 
     public void setCreatedBy(CalculationUser createdBy) {

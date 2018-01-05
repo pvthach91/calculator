@@ -1,16 +1,15 @@
 package com.thach.example.calculation;
 
+import lombok.NoArgsConstructor;
+
 /**
  * Created by THACH-PC
  */
+
+@NoArgsConstructor
 public class Addition extends TwoParamCalculation {
 
-    public Addition() {
-    }
-
-//    public Addition(String user, double firstParam, double secondParam) {
     public Addition(double firstParam, double secondParam) {
-//        super(user, firstParam, secondParam);
         super(firstParam, secondParam);
     }
 

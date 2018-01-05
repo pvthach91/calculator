@@ -1,13 +1,15 @@
 package com.thach.example.calculation;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * Created by THACH-PC
  */
-//@JsonIgnoreProperties(ignoreUnknown = true)
+
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type", visible = true)
 @JsonSubTypes({
         @JsonSubTypes.Type(value = Addition.class, name = "addition"),
@@ -15,35 +17,19 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         @JsonSubTypes.Type(value = Division.class, name = "division"),
         @JsonSubTypes.Type(value = Multiplication.class, name = "multiplication")
 })
+@NoArgsConstructor
 public abstract class TwoParamCalculation extends Calculator {
 
+    @Getter
+    @Setter
     protected double firstParam;
 
+    @Getter
+    @Setter
     protected double secondParam;
 
-    protected TwoParamCalculation() {
-    }
-
-//    protected TwoParamCalculation(String user, double firstParam, double secondParam) {
     protected TwoParamCalculation(double firstParam, double secondParam) {
-//        super(user);
         this.firstParam = firstParam;
-        this.secondParam = secondParam;
-    }
-
-    public double getFirstParam() {
-        return firstParam;
-    }
-
-    public void setFirstParam(double firstParam) {
-        this.firstParam = firstParam;
-    }
-
-    public double getSecondParam() {
-        return secondParam;
-    }
-
-    public void setSecondParam(double secondParam) {
         this.secondParam = secondParam;
     }
 }

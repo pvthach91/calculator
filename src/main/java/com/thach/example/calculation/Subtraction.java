@@ -1,17 +1,15 @@
 package com.thach.example.calculation;
 
+import lombok.NoArgsConstructor;
+
 /**
  * Created by THACH-PC
  */
 
+@NoArgsConstructor
 public class Subtraction extends TwoParamCalculation {
 
-    public Subtraction() {
-    }
-
-//    public Subtraction(String user, double firstParam, double secondParam) {
     public Subtraction(double firstParam, double secondParam) {
-//        super(user, firstParam, secondParam);
         super(firstParam, secondParam);
     }
 

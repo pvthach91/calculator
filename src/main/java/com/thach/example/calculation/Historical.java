@@ -7,6 +7,4 @@ package com.thach.example.calculation;
 public interface Historical {
 
     public String generateHistory();
-
-//    public String getUser();
 }

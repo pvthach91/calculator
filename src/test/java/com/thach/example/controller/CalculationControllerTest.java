@@ -142,7 +142,7 @@ public class CalculationControllerTest {
     }
 
     @Test(expected = Exception.class)
-    public void testTwoParamCalculateFail() throws Exception {
+    public void testTwoParamCalculateFailWithNoAuthentication() throws Exception {
         String calculation = "{\"type\": \"division\", \"firstParam\": \"10\", \"secondParam\": \"3\"}";
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .post("/calculateTwoParam")
@@ -153,7 +153,7 @@ public class CalculationControllerTest {
     }
 
     @Test(expected = Exception.class)
-    public void testOneParamCalculateFail() throws Exception {
+    public void testOneParamCalculateFailWithNoAuthentication() throws Exception {
         String calculation = "{\"type\": \"square\", \"param\": \"2\"}";
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .post("/calculateOneParam")

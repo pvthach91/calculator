@@ -2,6 +2,9 @@ package com.thach.example.calculation;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * Created by THACH-PC
@@ -11,24 +14,14 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 @JsonSubTypes({
         @JsonSubTypes.Type(value = Square.class, name = "square")
 })
+@NoArgsConstructor
 public abstract class OneParamCalculation extends Calculator {
 
+    @Getter
+    @Setter
     protected double param;
 
-    protected OneParamCalculation() {
-    }
-
-//    protected OneParamCalculation(String user, double param) {
     protected OneParamCalculation(double param) {
-//        super(user);
-        this.param = param;
-    }
-
-    public double getParam() {
-        return param;
-    }
-
-    public void setParam(double param) {
         this.param = param;
     }
 }

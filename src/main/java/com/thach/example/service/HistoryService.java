@@ -32,7 +32,6 @@ public class HistoryService {
     }
 
     public void createHistory(Historical historical){
-//        CalculationUser user = userService.findUser(historical.getUser());
         CalculationUser user = userService.findUser(SecurityContextHolder.getContext().getAuthentication().getName());
         if (user != null){
             History history = new History();

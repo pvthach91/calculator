@@ -1,16 +1,15 @@
 package com.thach.example.calculation;
 
+import lombok.NoArgsConstructor;
+
 /**
  * Created by THACH-PC
  */
+
+@NoArgsConstructor
 public class Multiplication extends TwoParamCalculation {
 
-    public Multiplication() {
-    }
-
-//    public Multiplication(String user, double firstParam, double secondParam) {
     public Multiplication(double firstParam, double secondParam) {
-//        super(user, firstParam, secondParam);
         super(firstParam, secondParam);
     }
 
