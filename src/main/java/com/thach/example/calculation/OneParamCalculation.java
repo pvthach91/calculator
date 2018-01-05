@@ -18,8 +18,9 @@ public abstract class OneParamCalculation extends Calculator {
     protected OneParamCalculation() {
     }
 
-    protected OneParamCalculation(String user, double param) {
-        super(user);
+//    protected OneParamCalculation(String user, double param) {
+    protected OneParamCalculation(double param) {
+//        super(user);
         this.param = param;
     }
 

@@ -5,6 +5,7 @@ import com.thach.example.dao.HistoryDAO;
 import com.thach.example.model.CalculationUser;
 import com.thach.example.model.History;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,7 +32,8 @@ public class HistoryService {
     }
 
     public void createHistory(Historical historical){
-        CalculationUser user = userService.findUser(historical.getUser());
+//        CalculationUser user = userService.findUser(historical.getUser());
+        CalculationUser user = userService.findUser(SecurityContextHolder.getContext().getAuthentication().getName());
         if (user != null){
             History history = new History();
             history.setContent(historical.generateHistory());

@@ -15,6 +15,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -65,14 +66,12 @@ public class HistoryControllerTest {
     }
 
     @Test
+    @WithMockUser(username="testUser",password = "pass", roles={"USER"})
     public void getHistories() throws Exception {
         Mockito.when(historyService.getHistoriesByUser(Mockito.any(CalculationUser.class))).thenReturn(histories);
         Mockito.when(userService.findUser(Mockito.anyString())).thenReturn(user);
-
-        RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .post("/history")
-                .accept(MediaType.APPLICATION_JSON).content("testUser")
-                .contentType(MediaType.APPLICATION_JSON);
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
+                "/histories").accept(MediaType.APPLICATION_JSON);
 
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 
@@ -80,5 +79,15 @@ public class HistoryControllerTest {
 
         assertEquals(HttpStatus.OK.value(), response.getStatus());
         assertNotNull(response.getContentAsString());
+    }
+
+    @Test(expected = Exception.class)
+    public void getHistoriesFailWithNoAuthentication() throws Exception {
+//        Mockito.when(historyService.getHistoriesByUser(Mockito.any(CalculationUser.class))).thenReturn(histories);
+//        Mockito.when(userService.findUser(Mockito.anyString())).thenReturn(user);
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
+                "/histories").accept(MediaType.APPLICATION_JSON);
+
+        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
     }
 }

@@ -41,7 +41,7 @@ public class CalculatorApplication {
 					.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 			// @formatter:on
 
-//			http.csrf().disable();
+			http.csrf().disable();
 		}
 	}
 	@Autowired

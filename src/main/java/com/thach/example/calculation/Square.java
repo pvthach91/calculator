@@ -8,8 +8,10 @@ public class Square extends OneParamCalculation {
 
     public Square(){
     }
-    public Square(String user, double firstParam) {
-        super(user, firstParam);
+//    public Square(String user, double firstParam) {
+    public Square(double firstParam) {
+//        super(user, firstParam);
+        super(firstParam);
     }
 
     @Override

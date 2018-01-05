@@ -8,5 +8,5 @@ public interface Historical {
 
     public String generateHistory();
 
-    public String getUser();
+//    public String getUser();
 }

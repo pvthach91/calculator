@@ -25,15 +25,15 @@ public class MultiplicationTest {
     }
 
     @Test
-    public void testAddition() throws Exception {
-        Multiplication multiplication = new Multiplication("testUser", 2, 4);
+    public void testMultiplication() throws Exception {
+        Multiplication multiplication = new Multiplication(2, 4);
         double actual = multiplication.calculate();
         assertEquals(8.0, actual, 0);
     }
 
     @Test
-    public void testWrongAddition() throws Exception {
-        Multiplication multiplication = new Multiplication("testUser", 2, 4);
+    public void testWrongMultiplication() throws Exception {
+        Multiplication multiplication = new Multiplication(2, 4);
         double actual = multiplication.calculate();
         assertNotEquals(7.0, actual, 0);
     }
@@ -42,7 +42,7 @@ public class MultiplicationTest {
     public void testGenerateHistory() throws Exception {
         double first = 12;
         double second = 4;
-        Multiplication multiplication = new Multiplication("testUser", first, second);
+        Multiplication multiplication = new Multiplication(first, second);
         String expect = first + " * " + second + " = " + multiplication.calculate();
         assertEquals(expect, multiplication.generateHistory());
     }

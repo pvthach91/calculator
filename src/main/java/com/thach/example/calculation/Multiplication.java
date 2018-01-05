@@ -8,8 +8,10 @@ public class Multiplication extends TwoParamCalculation {
     public Multiplication() {
     }
 
-    public Multiplication(String user, double firstParam, double secondParam) {
-        super(user, firstParam, secondParam);
+//    public Multiplication(String user, double firstParam, double secondParam) {
+    public Multiplication(double firstParam, double secondParam) {
+//        super(user, firstParam, secondParam);
+        super(firstParam, secondParam);
     }
 
     @Override

@@ -1,12 +1,13 @@
 package com.thach.example.calculation;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 /**
  * Created by THACH-PC
  */
-
+//@JsonIgnoreProperties(ignoreUnknown = true)
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type", visible = true)
 @JsonSubTypes({
         @JsonSubTypes.Type(value = Addition.class, name = "addition"),
@@ -23,8 +24,9 @@ public abstract class TwoParamCalculation extends Calculator {
     protected TwoParamCalculation() {
     }
 
-    protected TwoParamCalculation(String user, double firstParam, double secondParam) {
-        super(user);
+//    protected TwoParamCalculation(String user, double firstParam, double secondParam) {
+    protected TwoParamCalculation(double firstParam, double secondParam) {
+//        super(user);
         this.firstParam = firstParam;
         this.secondParam = secondParam;
     }

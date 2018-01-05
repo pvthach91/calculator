@@ -46,8 +46,11 @@ public class AuthenticationController {
 //        }
 //    }
 
-    @RequestMapping("/login")
+    @RequestMapping(method = RequestMethod.POST, value = "/login")
     public Principal login(Principal user) throws Exception {
+        if ( user == null) {
+            throw new Exception(EnumError.USER_PASS_INVALID.getDescription());
+        }
         return user;
     }
 
