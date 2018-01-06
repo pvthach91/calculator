@@ -42,7 +42,6 @@ public class WebControllerTest {
     }
 
     @Test
-    @WithMockUser(username="testUser",password = "pass", roles={"USER"})
     public void getCalculatorPage() throws Exception {
         RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
                 "/").accept(
@@ -85,7 +84,6 @@ public class WebControllerTest {
     }
 
     @Test
-    @WithMockUser(username="testUser",password = "pass", roles={"USER"})
     public void getHistoryPage() throws Exception {
         RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
                 "/history").accept(

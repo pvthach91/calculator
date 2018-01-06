@@ -1,6 +1,6 @@
 package com.thach.example;
 
-import com.thach.example.service.MyUserDetailsService;
+import com.thach.example.service.UserService;
 import com.thach.example.util.CalculatorPasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -19,7 +19,7 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 public class CalculatorApplication {
 
 	@Autowired
-	private MyUserDetailsService myUserDetailsService;
+	private UserService userService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(CalculatorApplication.class, args);
@@ -34,11 +34,10 @@ public class CalculatorApplication {
 			http
 					.httpBasic().and()
 					.authorizeRequests()
-					.antMatchers("/signup", "/login").permitAll()
-					.anyRequest().authenticated()
-					.and()
-					.csrf()
-					.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+					.antMatchers("/signup", "/login", "/", "/history").permitAll()
+
+					// /histories, /calculateOneParam, /calculateTwoParam must be authenticated
+					.anyRequest().authenticated();
 			// @formatter:on
 
 			http.csrf().disable();
@@ -46,7 +45,7 @@ public class CalculatorApplication {
 	}
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(myUserDetailsService).passwordEncoder(passwordEncoder());
+		auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
 	}
 
 	@Bean
