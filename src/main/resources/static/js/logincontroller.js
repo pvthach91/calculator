@@ -4,6 +4,7 @@ app.controller('logincontroller', function($scope, $http, $location, $window) {
             $scope.loginResultMessage = "";
             var username = $scope.username;
             var password = $scope.password;
+
             var isValid = $scope.validateInput(username, password);
 
             if (isValid) {
